@@ -9,10 +9,10 @@ color
 
 return(
 
-<div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition duration-300">
+<div className="bg-white p-5 rounded-2xl shadow-sm hover:shadow-lg transition">
 
 
-<p className="text-gray-500 text-sm font-medium">
+<p className="text-gray-500 text-sm">
 
 {title}
 
@@ -20,7 +20,7 @@ return(
 
 
 
-<h1 className={`text-3xl font-bold mt-3 ${color}`}>
+<h1 className={`text-2xl md:text-3xl font-bold mt-2 ${color}`}>
 
 ₹ {Number(amount).toLocaleString()}
 
@@ -32,8 +32,6 @@ return(
 
 )
 
-
 }
-
 
 export default Card;

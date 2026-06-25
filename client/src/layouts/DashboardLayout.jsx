@@ -1,34 +1,93 @@
+import { useState } from 'react';
+import { FaBars } from 'react-icons/fa';
+
 import Sidebar from "../components/sidebar/Sidebar";
 
+function DashboardLayout({ children }) {
 
-function DashboardLayout({children}){
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
+    return (
 
-return(
-
-
-<div className="flex bg-slate-100">
-
-
-<Sidebar/>
+        <div className="min-h-screen bg-slate-100 flex">
 
 
-<div className="flex-1 p-6">
+            {/* Mobile Overlay */}
+
+            {
+
+                sidebarOpen && (
+
+                    <div
+
+                        className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+
+                        onClick={() => setSidebarOpen(false)}
+
+                    />
+
+                )
+
+            }
 
 
-{children}
+            {/* Sidebar */}
+
+            <Sidebar
+
+                sidebarOpen={sidebarOpen}
+
+                setSidebarOpen={setSidebarOpen}
+
+            />
 
 
-</div>
+            {/* Main Content */}
+
+            <main className="flex-1 overflow-x-hidden">
 
 
-</div>
+                {/* Mobile Header */}
+
+                <div className="lg:hidden bg-white shadow p-4 flex items-center">
+
+
+                    <button
+
+                        onClick={() => setSidebarOpen(true)}
+
+                        className="text-2xl"
+
+                    >
+
+                        <FaBars />
+
+                    </button>
+
+
+                    <h1 className="ml-4 text-xl font-bold">
+
+                        FinTrack
+
+                    </h1>
+
+                </div>
 
 
 
-)
+                <div className="p-4 md:p-6">
 
+                    {children}
+
+                </div>
+
+
+            </main>
+
+        </div>
+
+    );
 
 }
 
-export default DashboardLayout
+export default DashboardLayout;

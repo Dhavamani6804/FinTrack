@@ -1,45 +1,90 @@
-const Income=require('../models/Income');
+const Income = require('../models/Income');
+
+
+const addIncome = async(req,res)=>{
+
+    try{
+
+        const income = await Income.create({
+
+            source:req.body.source,
+
+            amount:req.body.amount,
+
+            user:req.user._id
+
+        });
+
+
+        res.status(201).json(income);
+
+    }
+
+    catch(err){
+
+        res.status(500).json({
+
+            message:err.message
+
+        });
+
+    }
+
+};
 
 
 
-const addIncome=async(req,res)=>{
+const getIncome = async(req,res)=>{
 
 
-const income=await Income.create({
+    try{
 
-amount:req.body.amount,
+        const incomes = await Income.find({
 
-user:req.user._id
+            user:req.user._id
 
-});
+        }).sort({
+
+            createdAt:-1
+
+        });
 
 
-res.json(
+        res.json(incomes);
 
-income
+    }
 
-);
+
+    catch(err){
+
+        res.status(500).json({
+
+            message:err.message
+
+        });
+
+    }
 
 
 };
 
 
 
-const getIncome=async(req,res)=>{
+const deleteIncome = async(req,res)=>{
 
 
-const income=await Income.findOne({
+    await Income.findByIdAndDelete(
 
-user:req.user._id
+        req.params.id
 
-});
+    );
 
 
-res.json(
+    res.json({
 
-income
+        message:"Deleted"
 
-);
+    });
 
 };
 
@@ -47,8 +92,10 @@ income
 
 module.exports={
 
-addIncome,
+    addIncome,
 
-getIncome
+    getIncome,
+
+    deleteIncome
 
 };

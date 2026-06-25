@@ -7,32 +7,25 @@ const protect=require('../middlewares/authMiddleware');
 const{
 
 addIncome,
-
-getIncome
+getIncome,
+deleteIncome
 
 }=require('../controllers/incomeController');
 
 
 
-router.post(
+router.post('/',protect,addIncome);
 
-'/',
-
-protect,
-
-addIncome
-
-);
+router.get('/',protect,getIncome);
 
 
+router.delete(
 
-router.get(
-
-'/',
+'/:id',
 
 protect,
 
-getIncome
+deleteIncome
 
 );
 

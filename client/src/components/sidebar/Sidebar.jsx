@@ -1,76 +1,107 @@
-import { NavLink } from 'react-router-dom';
-
+import { NavLink,useNavigate } from 'react-router-dom';
+import {useContext} from 'react';
+import {AuthContext} from '../../context/AuthContext';
 import {
     FaHome,
     FaWallet,
     FaMoneyBill,
     FaChartLine,
     FaCalculator,
-    FaBullseye,
-    FaPiggyBank,
     FaSignOutAlt
 } from 'react-icons/fa';
 
-function Sidebar() {
 
-    const menuItems = [
+function Sidebar({
 
-        {
-            name: "Dashboard",
-            path: "/dashboard",
-            icon: <FaHome />
-        },
+sidebarOpen,
 
-        {
-            name: "Expenses",
-            path: "/expenses",
-            icon: <FaWallet />
-        },
+setSidebarOpen
 
-        {
+}) {
+const menuItems = [
+
+{
+name:"Dashboard",
+path:"/dashboard",
+icon:<FaHome/>
+},
+
+{
+name:"Expenses",
+path:"/expenses",
+icon:<FaWallet/>
+},
+
+{
 name:"Income",
 path:"/income",
 icon:<FaMoneyBill/>
 },
 
-        {
-            name: "SIP",
-            path: "/sip",
-            icon: <FaChartLine />
-        },
+{
+name:"Investments",
+path:"/investments",
+icon:<FaChartLine/>
+},
 
-        {
-            name: "EMI",
-            path: "/emi",
-            icon: <FaCalculator />
-        },
+{
+name:"SIP",
+path:"/sip",
+icon:<FaChartLine/>
+},
 
-        {
-            name: "Investments",
-            path: "/investments",
-            icon: <FaChartLine />
-        },
+{
+name:"EMI",
+path:"/emi",
+icon:<FaCalculator/>
+}
 
-        {
-            name: "Goals",
-            path: "/goals",
-            icon: <FaBullseye />
-        },
+];
+    const navigate=useNavigate();
 
-        {
-            name: "Budget",
-            path: "/budget",
-            icon: <FaPiggyBank />
-        }
 
-    ];
+const {logout}=useContext(
+
+AuthContext
+
+);
+const handleLogout = async()=>{
+await logout();
+setSidebarOpen(false);
+navigate('/');
+}
 
 
     return (
 
-        <div className="w-64 h-screen bg-slate-900 text-white flex flex-col justify-between">
+<div
 
-            {/* Logo Section */}
+className={`
+fixed
+lg:static
+top-0
+left-0
+z-50
+w-64
+min-h-screen
+bg-slate-900
+text-white
+flex
+flex-col
+justify-between
+transform
+transition-transform
+duration-300
+${
+sidebarOpen
+?
+'translate-x-0'
+:
+'-translate-x-full'
+}
+lg:translate-x-0
+`}
+>            {/* Logo Section */}
 
             <div>
 
@@ -101,7 +132,7 @@ icon:<FaMoneyBill/>
                         menuItems.map((item) => (
 
                             <NavLink
-
+onClick={() => setSidebarOpen(false)}
                                 key={item.name}
 
                                 to={item.path}
@@ -158,6 +189,8 @@ icon:<FaMoneyBill/>
                 <button
 
                     className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-red-600 transition"
+
+                    onClick={handleLogout}
 
                 >
 

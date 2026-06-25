@@ -36,18 +36,36 @@ export const AuthProvider = ({ children }) => {
         }
 
     }
+    const logout = async()=>{
+
+try{
+
+await api.post('/auth/logout');
+
+setUser(null);
+
+}
+
+catch(err){
+
+console.log(err);
+
+}
+
+}
 
 
     return(
 
-        <AuthContext.Provider value={{
+       <AuthContext.Provider value={{
 
-            user,
-            setUser,
-            loading,
-            checkAuth
+user,
+setUser,
+loading,
+checkAuth,
+logout
 
-        }}>
+}}>
 
             {children}
 

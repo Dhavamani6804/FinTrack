@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const incomeSchema = new mongoose.Schema({
+const investmentSchema = new mongoose.Schema({
 
     source:{
         type:String,
@@ -14,14 +14,19 @@ const incomeSchema = new mongoose.Schema({
 
     user:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'User'
+        ref:'User',
+        required:true
     }
 
 },{
     timestamps:true
 });
 
-module.exports=mongoose.model(
-    'Income',
-    incomeSchema
+
+module.exports = mongoose.model(
+
+    'Investment',
+
+    investmentSchema
+
 );

@@ -7,9 +7,9 @@ setShowModal
 
     return (
 
-        <div className="bg-white rounded-2xl shadow overflow-hidden">
+        <div className="bg-white rounded-2xl shadow overflow-x-auto">
 
-            <table className="w-full">
+            <table className="min-w-[700px] w-full">
 
                 <thead className="bg-slate-100">
 
@@ -93,7 +93,7 @@ setShowModal
 <td className="text-center">
 
 
-<div className="flex justify-center gap-3">
+<div className="flex justify-center gap-2">
 
 
 <button

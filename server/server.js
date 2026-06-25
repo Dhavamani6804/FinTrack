@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const authRoutes=require("./routes/authRoutes");
 const expenseRoutes=require("./routes/expenseRoutes");
 const incomeRoutes=require('./routes/incomeRoutes');
+const investmentRoutes=require('./routes/investmentRoutes');
 
 const connectDB = require("./config/db");
 
@@ -32,6 +33,7 @@ app.use(
 app.use("/api/auth", authRoutes);
 app.use("/api/expenses", expenseRoutes);
 app.use('/api/income',incomeRoutes);
+app.use('/api/investments',investmentRoutes);
 // Test Route
 app.get("/", (req, res) => {
     res.send("FinTrack API Running");
