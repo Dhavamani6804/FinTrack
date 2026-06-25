@@ -25,7 +25,7 @@ app.use(cookieParser());
 
 const allowedOrigins=[
 'http://localhost:5173',
-process.env.VITE_API_URL
+process.env.CLIENT_URL
 ];
 app.use(
 cors({
