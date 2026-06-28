@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import api from "../../services/api";
 import { AuthContext } from "../../context/AuthContext";
@@ -124,6 +124,13 @@ loading?"Logging in...":"Login"
 
 
 </button>
+
+<p className="mt-4 text-sm text-slate-600">
+No account yet?{" "}
+<Link to="/register" className="text-blue-600 font-medium">
+Register
+</Link>
+</p>
 
 
 
